@@ -16,24 +16,6 @@
 
 @implementation SettingsTableViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (IS_IPAD) || (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
@@ -44,42 +26,55 @@
     return 5;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        // Cookies
-        return 3;
-    } else if (section == 1) {
-        // UA Spoofing
-        return 3;
-    } else if (section == 2) {
-        // Pipelining
-        return 2;
-    } else if (section == 3) {
-        // DNT header
-        return 2;
-    } else if (section == 4) {
-        // Bridges
-        return 1;
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            // Cookies
+            return 3;
+        case 1:
+            // UA Spoofing
+            return 3;
+        case 2:
+            // Pipelining
+            return 2;
+        case 3:
+            // DNT header
+            return 2;
+        case 4:
+            // Bridges
+            return 1;
+        default:
+            break;
     }
+
     return 0;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section == 0)
-        return @"Cookies\n(Changing Will Clear Cookies)";
-    else if (section == 1)
-        return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows 7 string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
-    else if (section == 2)
-        return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
-    else if (section == 3)
-        return @"DNT (Do Not Track) Header";
-    else if (section == 4)
-        return @"Tor Bridges\nSet up bridges if you have issues connecting to Tor. Remove all bridges to go back standard connection mode.\nSee http://onionbrowser.com/help/ for instructions.";
-    else
-        return nil;
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section{
+    
+    switch (section) {
+        case 0:
+            return @"Cookies\n(Changing Will Clear Cookies)";
+        case 1:
+            return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows 7 string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
+        case 2:
+            return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
+        case 3:
+            return @"DNT (Do Not Track) Header";
+        case 4:
+            return @"Tor Bridges\nSet up bridges if you have issues connecting to Tor. Remove all bridges to go back standard connection mode.\nSee http://onionbrowser.com/help/ for instructions.";
+        default:
+            break;
+    }
+    
+    return nil;
+    
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

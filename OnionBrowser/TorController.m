@@ -50,13 +50,13 @@
 -(void)startTor {
     // Starts or restarts tor thread.
     
-    if (_torCheckLoopTimer != nil) {
+    if (_torCheckLoopTimer) 
         [_torCheckLoopTimer invalidate];
-    }
-    if (_torStatusTimeoutTimer != nil) {
+    
+    if (_torStatusTimeoutTimer) 
         [_torStatusTimeoutTimer invalidate];
-    }
-    if (_torThread != nil) {
+    
+    if (_torThread) {
         [_torThread cancel];
         _torThread = nil;
     }

@@ -9,47 +9,22 @@
 #import "BookmarkEditViewController.h"
 #import "BookmarkTableViewController.h"
 
-@interface BookmarkEditViewController ()
-
-@end
-
 @implementation BookmarkEditViewController
+
 @synthesize bookmark;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    return [super initWithStyle:style];
 }
 
 - (id)initWithBookmark:(Bookmark *)bookmarkToEdit {
     self = [super initWithStyle:UITableViewStyleGrouped];
-    if (self) {
+    
+    if (self) 
         self.bookmark = bookmarkToEdit;
-    }
+    
     return self;
-}
-
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -63,17 +38,19 @@
     return 3;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section{
     if(section == 0)
         return @"Bookmark Title";
     else if (section == 1)
         return @"Bookmark URL";
-    else
-        return nil;
+    
+    return nil;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
     return 1;
 }
@@ -147,7 +124,8 @@
 }
 
 // Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
 
@@ -182,4 +160,5 @@
     [tableVC reload];
     [self dismissModalViewControllerAnimated:YES];
 }
+
 @end
